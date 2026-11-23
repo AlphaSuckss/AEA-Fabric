@@ -36,6 +36,9 @@
     ],
     "jade": [
       "dev.overgrown.sync.factory.compatibility.jade.SyncJadePlugin"
+    ],
+    "appleskin": [
+      "dev.alphasucks.aea.compat.appleskin.AppleSkinCompat"
     ]
   },
   "mixins": [
@@ -56,7 +59,9 @@
     "aea-hitbox.mixins.json",
     "aea-packassets.mixins.json",
     "aea-extra.mixins.json",
-    "aea-mindcontrol.mixins.json"
+    "aea-mindcontrol.mixins.json",
+    "aea-redstone.mixins.json",
+    "aea-spell_engine.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.15.0",
@@ -68,7 +73,9 @@
     "origins": ">=1.10.0 <1.11.0"
   },
   "suggests": {
-    "jade": "*"
+    "jade": "*",
+    "spell_engine": "*",
+    "appleskin": "*"
   },
   "provides": [
     "sync",

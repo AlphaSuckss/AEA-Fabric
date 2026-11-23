@@ -2,6 +2,21 @@
 
 Every change to AEA for Fabric 1.20.1, newest first.
 
+## 1.6.7
+
+### Added
+- `aea:redstone_pulse` (block action): sends a short redstone signal into a block (`receive`) or out of a position (`emit`), with `strength`, `duration`, `strong` and `sides`. Nothing is placed: blocks see the power the way they see a lever's, so pistons, wire, doors and modded machines react.
+- `/aea redstone pulse <pos> [receive|emit] [strength] [duration] [strong]`, the same pulse from commands and functions.
+- AppleSkin compatibility, active only when AppleSkin is installed: its tooltips and hunger bar preview show the values `apoli:modify_food` gives.
+- Spell Engine compatibility, active only with Spell Engine 0.x (what 1.20.1 packs run):
+  - `aea:grant_spell`: gives spells as if from equipment, on Spell Engine's own spell hotbar. They work whatever the player holds, unless `always` is false; then they're added only to a held spell item that takes spell books.
+  - `aea:modify_spell`: changes `cast_time`, `cooldown` and `range` with Apoli modifiers.
+  - `aea:prevent_spell_cast`: blocks casting, with an optional `message`.
+  - `aea:action_on_spell_cast`: runs an entity action on the caster and a bi-entity action on each target.
+  - Entity and bi-entity action `aea:cast_spell`: casts any spell at once, with or without its cost (`use_cost`).
+  - Conditions: entity `aea:casting_spell`, `aea:spell_on_cooldown` and `aea:knows_spell`; item `aea:has_spell`; damage `aea:spell_damage` (by school).
+  - Every spell type takes `spell` and `school` to limit it to some spells. Spell Engine 0.x has no spell tags, so `#`tags are read but match nothing.
+
 ## 1.6.6
 
 ### Added

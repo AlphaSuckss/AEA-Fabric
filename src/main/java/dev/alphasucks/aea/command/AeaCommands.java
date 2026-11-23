@@ -7,7 +7,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.class_2168;
 import net.minecraft.class_2170;
 
-/** {@code /aea validate}, and AEA's {@code /scale} when Pehkui isn't installed. */
+/** {@code /aea validate}, {@code /aea redstone pulse}, and AEA's {@code /scale} when Pehkui isn't installed. */
 public final class AeaCommands {
     private static boolean registered;
     private static boolean announced;
@@ -34,7 +34,8 @@ public final class AeaCommands {
         dispatcher.register(class_2170.method_9247("aea").requires(source -> source.method_9259(2))
             .then(class_2170.method_9247("validate")
                 .executes(ctx -> guard(ctx.getSource(), false))
-                .then(class_2170.method_9247("fields").executes(ctx -> guard(ctx.getSource(), true)))));
+                .then(class_2170.method_9247("fields").executes(ctx -> guard(ctx.getSource(), true))))
+            .then(dev.alphasucks.aea.redstone.RedstonePulseTypes.command()));
     }
 
     private static int guard(class_2168 source, boolean fields) {

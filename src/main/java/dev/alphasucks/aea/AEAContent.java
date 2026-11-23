@@ -79,6 +79,12 @@ public final class AEAContent {
         dev.alphasucks.aea.port.power.PowerTypeRegistry.register(dev.alphasucks.aea.spawnpoint.PreventSpawnPointPower.ID, new dev.alphasucks.aea.spawnpoint.PreventSpawnPointPower());
         dev.alphasucks.aea.gamerule.GameRuleCondition.register();
         dev.alphasucks.aea.mindcontrol.MindControl.register();
+        dev.alphasucks.aea.redstone.RedstonePulseTypes.register();
+        if (dev.alphasucks.aea.compat.spell_engine.SpellEngineVersion.supported()) {
+            dev.alphasucks.aea.compat.spell_engine.SpellEngineTypes.register();
+        } else if (dev.alphasucks.aea.compat.spell_engine.SpellEngineVersion.installed()) {
+            AEA.LOGGER.warn("[AEA] This Spell Engine version isn't supported on 1.20.1 (AEA supports 0.x); AEA's spell types are off.");
+        }
         dev.alphasucks.aea.gamerule.DataGameRules.init();
         dev.alphasucks.aea.originsport.AeaOriginsPort.init();
         dev.alphasucks.aea.port.effects.AeaPortEffects.init();

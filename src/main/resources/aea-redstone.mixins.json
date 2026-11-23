@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.alphasucks.aea.redstone.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "RedstoneViewPulseMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

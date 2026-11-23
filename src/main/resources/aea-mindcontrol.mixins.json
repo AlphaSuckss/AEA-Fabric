@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.alphasucks.aea.mindcontrol.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "CombatTrackerMindControlMixin",
+    "CommandManagerMindControlMixin",
+    "LivingEntityShareDamageMixin",
+    "MobMindControlMixin",
+    "ServerPlayerMindControlMixin"
+  ],
+  "client": [
+    "client.CameraMindControlMixin",
+    "client.KeyBindingMindControlAccessor",
+    "client.KeyBindingMindControlMixin",
+    "client.KeyboardInputMindControlMixin",
+    "client.MouseMindControlMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

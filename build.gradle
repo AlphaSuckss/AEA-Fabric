@@ -1,0 +1,103 @@
+plugins {
+    id 'fabric-loom' version '1.10-SNAPSHOT'
+}
+
+version = "${mod_version}+mc${minecraft_version}"
+group = 'dev.alphasucks.aea'
+base { archivesName = 'aea' }
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+loom {
+    // No refmap: the mixins already use intermediary names.
+    mixin { useLegacyMixinAp = false }
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.ladysnake.org/releases' }
+    // Optional mods, for the compat in compat/ and port/compat/.
+    exclusiveContent {
+        forRepository { maven { url = 'https://api.modrinth.com/maven' } }
+        filter { includeGroup 'maven.modrinth' }
+    }
+}
+
+// Put these in libs/ (they aren't included in this repo). Apoli and Calio are inside the Origins jar, under META-INF/jars.
+def origins = files('libs/Origins-1.10.2+mc.1.20.x.jar', 'libs/apoli-2.9.2+mc.1.20.x.jar', 'libs/calio-1.11.2+mc.1.20.x.jar')
+// Sync and Origins: Classes ship inside AEA; the classes in src/ replace theirs.
+def bundled = ['libs/sync-1.11.8.jar', 'libs/Origins-Classes-1.20-1.7.0.jar']
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    // The source is written with intermediary names, so intermediary is also the "named" set.
+    mappings "net.fabricmc:intermediary:${minecraft_version}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+
+    modCompileOnly origins
+    compileOnly files(bundled)
+    modCompileOnly 'dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1'
+    modCompileOnly 'dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1'
+
+    // Optional: AEA only touches these when the mod is installed. Plain compileOnly: they're intermediary-named
+    // already, and some were built with newer Loom versions than this one reads.
+    compileOnly 'maven.modrinth:trinkets:3.7.2'
+    compileOnly 'maven.modrinth:accessories:mee7rWXz'                // 1.0.0-beta.49+1.20.1, Fabric
+    compileOnly 'maven.modrinth:skills:g3pzFlwX'                     // Pufferfish's Skills 0.19.2, Fabric
+    compileOnly 'maven.modrinth:hardcore-revival:20.1.19+fabric-1.20.1'
+    compileOnly 'maven.modrinth:balm:7.3.44+fabric-1.20.1'
+    compileOnly 'maven.modrinth:icarus:2.14.1+Fabric'
+    compileOnly 'maven.modrinth:icarus-rewinged:1.1.5'
+    compileOnly 'maven.modrinth:ledger:1.3.18-backport'
+    compileOnly 'org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.3' // Ledger's API is Kotlin
+    compileOnly 'maven.modrinth:fabric-permissions-api:0.3.1'
+}
+
+processResources {
+    inputs.property 'version', mod_version
+    filesMatching('fabric.mod.json') { expand 'version': mod_version }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+}
+
+jar {
+    manifest.attributes(
+        'Implementation-Title': 'AEA',
+        'Implementation-Version': mod_version
+    )
+}
+
+// The remapped jar goes to build/devlibs; build/libs gets it with Sync and Origins: Classes merged in, unchanged.
+// They're added after remapping so their classes stay byte for byte as released.
+remapJar {
+    destinationDirectory = layout.buildDirectory.dir('devlibs')
+    archiveClassifier = 'slim'
+}
+
+tasks.register('bundleJar', Jar) {
+    dependsOn remapJar
+    archiveClassifier = ''
+    destinationDirectory = layout.buildDirectory.dir('libs')
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from(zipTree(remapJar.archiveFile)) { exclude 'META-INF/MANIFEST.MF' }
+    bundled.each { path ->
+        from(zipTree(file(path))) {
+            exclude 'fabric.mod.json', 'META-INF/**', 'LICENSE', 'dev/overgrown/sync/SyncDataGenerator.class'
+        }
+    }
+    manifest.attributes(
+        'Fabric-Mapping-Namespace': 'intermediary',
+        'Fabric-Minecraft-Version': minecraft_version,
+        'Implementation-Title': 'AEA',
+        'Implementation-Version': mod_version
+    )
+}
+
+assemble.dependsOn bundleJar

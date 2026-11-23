@@ -1,0 +1,14 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "dev.alphasucks.aea.compat.carryonledger.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "dev.alphasucks.aea.compat.carryonledger.mixin.CarryOnLedgerMixinPlugin",
+  "mixins": [
+    "CarryOnPickupMixin",
+    "CarryOnPlacementMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

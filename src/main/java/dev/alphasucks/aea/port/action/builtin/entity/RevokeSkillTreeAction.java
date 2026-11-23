@@ -1,0 +1,37 @@
+package dev.alphasucks.aea.port.action.builtin.entity;
+
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.alphasucks.aea.port.action.ActionType;
+import dev.alphasucks.aea.port.codec.IdCodecs;
+import dev.alphasucks.aea.port.compat.ModCompat;
+import dev.alphasucks.aea.port.compat.skills.SkillsCompat;
+import dev.alphasucks.aea.port.condition.context.EntityCtx;
+import dev.alphasucks.aea.port.skill.SkillRegistry;
+import dev.alphasucks.aea.port.skill.SkillTrees;
+import net.minecraft.class_2960;
+import net.minecraft.class_3222;
+
+public final class RevokeSkillTreeAction implements ActionType<EntityCtx, RevokeSkillTreeAction.Cfg> {
+   @Override
+   public MapCodec<RevokeSkillTreeAction.Cfg> codec() {
+      return RecordCodecBuilder.mapCodec(
+         i -> i.group(IdCodecs.ID.fieldOf("skill_tree").forGetter(RevokeSkillTreeAction.Cfg::skillTree)).apply(i, RevokeSkillTreeAction.Cfg::new)
+      );
+   }
+
+   public void run(RevokeSkillTreeAction.Cfg cfg, EntityCtx ctx) {
+      if (ctx.entity() instanceof class_3222 player) {
+         if (SkillRegistry.tree(cfg.skillTree()) != null) {
+            SkillTrees.revokeTree(player, cfg.skillTree());
+         } else {
+            if (ModCompat.PUFFISH_SKILLS) {
+               SkillsCompat.lockCategory(player, cfg.skillTree());
+            }
+         }
+      }
+   }
+
+   public record Cfg(class_2960 skillTree) {
+   }
+}

@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.alphasucks.aea.originsport.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "OriginLayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

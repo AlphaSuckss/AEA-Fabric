@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "id": "aea",
+  "version": "${version}",
+  "name": "Alpha's Everything Addon",
+  "description": "AEA: Sync and Origins: Classes plus a port of Overgrown's Apoli and Origins features, running on Origins 1.10.2 (Apoli 2.9.2) for Fabric 1.20.1. Type ids keep their original namespaces (sync:, apoli:, origins:).",
+  "authors": [
+    "AlphaSucks"
+  ],
+  "contributors": [
+    "Overgrown (original Sync, Apoli and Origins code)",
+    "apace100 (original Apoli, Origins and Origins: Classes)"
+  ],
+  "contact": {
+    "sources": "https://github.com/0vergrown/Sync"
+  },
+  "license": "MIT AND LicenseRef-AO-1",
+  "icon": "assets/aea/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.overgrown.sync.Sync",
+      "dev.alphasucks.aea.AEA",
+      "io.github.apace100.originsclasses.OriginsClasses"
+    ],
+    "client": [
+      "dev.overgrown.sync.SyncClient",
+      "dev.alphasucks.aea.AEAClient",
+      "io.github.apace100.originsclasses.OriginsClassesClient"
+    ],
+    "server": [
+      "dev.overgrown.sync.SyncServer"
+    ],
+    "lambdynlights:initializer": [
+      "dev.overgrown.sync.factory.power.type.emissive.compatibility.lambdynamiclights.DynamicLightsEntry"
+    ],
+    "jade": [
+      "dev.overgrown.sync.factory.compatibility.jade.SyncJadePlugin"
+    ]
+  },
+  "mixins": [
+    "sync.mixins.json",
+    "aea.mixins.json",
+    "aea-port.mixins.json",
+    "aea-port-accessory.mixins.json",
+    "aea-port-icarus.mixins.json",
+    "aea-port-walkers.mixins.json",
+    "aea-port-commands.mixins.json",
+    "aea-originsport.mixins.json",
+    "aea-port-effects.mixins.json",
+    "origins-classes.mixins.json",
+    "aea-carryon-ledger.mixins.json",
+    "aea-mobai.mixins.json",
+    "aea-macros.mixins.json",
+    "aea-gui.mixins.json",
+    "aea-hitbox.mixins.json",
+    "aea-packassets.mixins.json",
+    "aea-extra.mixins.json",
+    "aea-mindcontrol.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*",
+    "apoli": ">=2.9.0 <2.10.0",
+    "calio": ">=1.11.0",
+    "origins": ">=1.10.0 <1.11.0"
+  },
+  "suggests": {
+    "jade": "*"
+  },
+  "provides": [
+    "sync",
+    "origins-classes"
+  ]
+}

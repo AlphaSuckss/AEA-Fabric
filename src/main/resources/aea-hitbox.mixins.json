@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.alphasucks.aea.hitbox.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "LivingEntityHitboxMixin",
+    "PlayerAttackHitboxMixin",
+    "ProjectileHitPartMixin",
+    "ProjectileOwnPartMixin",
+    "ServerWorldHitboxMixin",
+    "WorldHitboxMixin"
+  ],
+  "client": [
+    "HitboxOverlayMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

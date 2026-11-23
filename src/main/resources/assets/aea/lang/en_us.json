@@ -1,0 +1,11 @@
+{
+  "commands.function.error.argument_not_compound": "Invalid argument type: %s, expected Compound",
+  "commands.function.error.missing_arguments": "Missing arguments to function %s",
+  "commands.function.error.missing_argument": "Missing argument %2$s to function %1$s",
+  "commands.function.error.parse": "While instantiating macro %s: Command '%s' caused error: %s",
+  "entity.aea.mind_control_body": "Body",
+  "aea.mind_control.controlling": "Controlling %s",
+  "aea.mind_control.controlled": "%s is controlling you",
+  "aea.mind_control.struggle": "Press keys to struggle free",
+  "death.aea.mind_control.controlled_by": " (controlled by %s)"
+}

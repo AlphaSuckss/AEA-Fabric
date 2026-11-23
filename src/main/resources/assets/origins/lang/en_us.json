@@ -1,0 +1,16 @@
+{
+  "key.origins.ternary_active": "3rd Active Power (Ternary)",
+  "key.origins.quaternary_active": "4th Active Power (Quaternary)",
+  "key.origins.quinary_active": "5th Active Power (Quinary)",
+  "key.origins.senary_active": "6th Active Power (Senary)",
+  "key.origins.septenary_active": "7th Active Power (Septenary)",
+  "key.origins.octonary_active": "8th Active Power (Octonary)",
+  "key.origins.nonary_active": "9th Active Power (Nonary)",
+  "key.origins.denary_active": "10th Active Power (Denary)",
+  "key.origins.swap": "Swap Origin",
+  "origins.screen.swap_origin": "Swap Origin",
+  "origins.gui.swap_origin.title": "Swap your %s",
+  "origins.gui.swap_origin.title.generic": "Swap Origin",
+  "origins.gui.swap_origin.empty": "You have nothing to swap to.",
+  "origins.gui.swap_origin.main": "Main origin (none)"
+}

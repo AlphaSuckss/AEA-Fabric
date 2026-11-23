@@ -1,0 +1,17 @@
+{
+  "required": false,
+  "package": "dev.alphasucks.aea.port.compat.icarus.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "dev.alphasucks.aea.port.compat.icarus.mixin.IcarusCompatMixinPlugin",
+  "mixins": [
+    "IcarusHelperMixin"
+  ],
+  "client": [
+    "client.IcarusClientMixin",
+    "client.WingEntityModelMixin",
+    "client.FixedWingEntityModelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

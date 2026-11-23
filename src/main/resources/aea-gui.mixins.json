@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "dev.alphasucks.aea.gui.client.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [],
+  "client": [
+    "HandledScreenMixin",
+    "SlotAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

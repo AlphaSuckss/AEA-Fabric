@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "dev.alphasucks.aea.port.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "command.EntitySelectorOptionsAccessor",
+    "command.EntitySelectorOptionsMixin",
+    "command.ExecuteCommandMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

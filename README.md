@@ -16,9 +16,6 @@ Data pack formats match [AEA for NeoForge 1.21.1](https://github.com/AlphaSuckss
 2. `gradlew build` (JDK 17). The optional mods AEA has compat for are fetched from Modrinth's Maven. The jar lands in
    `build/libs/`.
 
-The source is written with intermediary names (`class_1309`, `method_5643`), so it builds against intermediary
-mappings and needs no remapping.
-
 ## Layout
 | Package | What it does |
 |---|---|
